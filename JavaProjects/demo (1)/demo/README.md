@@ -1,4 +1,4 @@
-## CRUD SERVICES 
+# CRUD SERVICES 
 Project ini membuat REST API sederhana menggunakan spring boot 
 
 # Features 
@@ -8,8 +8,8 @@ Project ini membuat REST API sederhana menggunakan spring boot
 4. Update user (found by id)
 5. Delete user (found by id)
 
-# 🚀 Cara Menjalankan Project
-# ✅— Lewat IDE (IntelliJ / VS Code)
+## 🚀 Cara Menjalankan Project
+## ✅— Lewat IDE (IntelliJ / VS Code)
 
 1. Buka project `demo`
 2. Klik **Build Project** sampai folder `target/` muncul
@@ -19,7 +19,7 @@ DemoApplication.java
 Tomcat started on port(s): 9092
 Berarti aplikasi sudah berjalan ✅
 
-# 🚀 Cara Mengakses Endpoints 
+## 🚀 Cara Mengakses Endpoints 
 - Create user     : POST http://localhost:9092/api/users/create
 - Read all user   : GET  http://localhost:9092/api/users/read
 - Find user by id : GET http://localhost:9092/api/users/{id}
