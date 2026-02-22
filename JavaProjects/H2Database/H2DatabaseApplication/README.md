@@ -21,13 +21,14 @@ Berarti aplikasi sudah berjalan ✅
 
 ## 🗄 Konfigurasi Database H2 
 Project ini menggunakan H2 File database dengan konfigurasi berikut 
-
+```
 spring.datasource.url=jdbc:h2:file:./data/mydb
 spring.datasource.username=
 spring.datasource.password=
 spring.datasource.driver-class-name=org.h2.Driver
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+```
 
 ## 🚀 Cara Mengakses Endpoints 
 - Create user     : POST http://localhost:8080/users/create
