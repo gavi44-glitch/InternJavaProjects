@@ -32,58 +32,48 @@ public class UserDaoImpl implements UserDAO{
                 .createQuery("SELECT u FROM User u", User.class)
                 .getResultList();
 
-//            //NOTE : BISA JUGA KALO MAU CREATE NATIVE QUERY
-//            return entityManager
-//                    .createNativeQuery("SELECT * FROM Users", User.class)
-//                    .getResultList();
+        /*
+        NOTE : BISA JUGA KALO MAU CREATE NATIVE QUERY
+            return entityManager
+                    .createNativeQuery("SELECT * FROM Users", User.class)
+                    .getResultList();
+         */
+
     }
 
     @Override
-    public User login(String userID, String userPass){
+    public User login(String userID, String userPass) {
 
-        try{
+        try {
             return entityManager
-                    .createQuery("SELECT u FROM User u where u.userID =:userID AND u.userPass =:userPass",User.class)
-                    .setParameter("userID",userID)
+                    .createQuery("SELECT u FROM User u where u.userID =:userID AND u.userPass =:userPass", User.class)
+                    .setParameter("userID", userID)
                     .setParameter("userPass", userPass)
                     .getSingleResult();
 
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
-
-//        if (encoder.matches(userPass, user.getUserPass())){
-//            return "LOGIN SUCCESS";
-//        }else{
-//            return "LOGIN FAILED";
-//        }
-//        System.out.println("RESULT SIZE = " + user.size());
-//        if (user.getUserPass().equalsIgnoreCase(userPass)){
-//            return "LOGIN SUCCESS";
-//        }else{
-//            return "LOGIN FAILED";
-//        }
     }
 
     @Override
     public User findUser(String id){
-//            return entityManager
-//                    .createQuery("SELECT u FROM User u WHERE u.id =:id",User.class)
-//                    .setParameter("id",id)
-//                    .getSingleResult();
+
         return entityManager.find(User.class, id);
+
+
+        /*
+                    return entityManager
+                    .createQuery("SELECT u FROM User u WHERE u.id =:id",User.class)
+                    .setParameter("id",id)
+                    .getSingleResult();
+         */
     }
 
     @Override
     public User updatedUsername(String id, Map<String, Object> updates){
 
-        //INI cara mengambil entity berdasarkan PK di JPA
-        // jadi syntax aslinya itu  User user = entityManager.find(User.class, id);
-        // artinya dia mengambil entity user berdasarkan primary key = id
 
-        // jadi kalo sudah ada datanya di persistence context, dia return object yang sama
-        // tapi kalo belum ada, maka hibernate akan generate SQL untuk dikirim ke db
-        // khusus untuk cari field bedasarkan PK
 
         User updatedData = entityManager.find(User.class,id);
 
@@ -97,6 +87,16 @@ public class UserDaoImpl implements UserDAO{
         }
 
         return updatedData;
+           /*
+          INI cara mengambil entity berdasarkan PK di JPA
+         jadi syntax aslinya itu  User user = entityManager.find(User.class, id);
+         artinya dia mengambil entity user berdasarkan primary key = id
+
+         jadi kalo sudah ada datanya di persistence context, dia return object yang sama
+         tapi kalo belum ada, maka hibernate akan generate SQL untuk dikirim ke db
+         khusus untuk cari field bedasarkan PK
+
+         */
     }
 
     @Override

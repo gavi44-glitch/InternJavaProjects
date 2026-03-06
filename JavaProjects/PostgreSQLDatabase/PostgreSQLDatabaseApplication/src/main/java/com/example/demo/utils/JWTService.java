@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.utils;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -50,6 +50,6 @@ public class JWTService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public boolean validateToken(String token) {
-    }
+//    public boolean validateToken(String token) {
+//    }
 }

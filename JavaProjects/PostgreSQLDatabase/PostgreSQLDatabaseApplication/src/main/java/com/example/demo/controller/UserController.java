@@ -29,19 +29,16 @@ public class UserController {
     //CREATE USER
     @PostMapping("/create")
     public User create(@RequestBody User user){
-//        System.out.println("masuk");
+        System.out.println(user);
         return userService.create(user);
     }
 
     @PostMapping("/login")
     public String login(@RequestBody Login login){
-//        System.out.println(login.getUserID());
-//        System.out.println(login.getUserPass());
 
         // Menambahkan jwt token implementation ke service login ini
         return userService.login(login.getUserID(), login.getUserPass());
 
-//        return userService.login(userID, userPass);
     }
 
     //  READ ALL
