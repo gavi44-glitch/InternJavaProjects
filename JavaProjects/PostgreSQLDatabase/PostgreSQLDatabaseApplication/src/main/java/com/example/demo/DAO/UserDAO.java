@@ -11,4 +11,5 @@ public interface UserDAO {
     public User findUser(String id);
     public User updatedUsername(String id, Map<String,Object> updates);
     public User deleteUser(String id);
+    public User login(String userID, String userPass);
 }

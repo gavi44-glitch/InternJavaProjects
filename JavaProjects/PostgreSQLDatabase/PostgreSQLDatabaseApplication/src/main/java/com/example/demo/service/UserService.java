@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.DTO.Login;
 import com.example.demo.model.User;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface UserService {
     public User findUser(String id);
     public User updatedUsername(String id, Map<String,Object> updates);
     public User deleteUser(String id);
+    public String login(String userID, String userPass);
 }

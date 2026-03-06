@@ -1,15 +1,20 @@
 package com.example.demo.DAO;
 
 import com.example.demo.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class UserDaoImpl implements UserDAO{
+
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -31,6 +36,33 @@ public class UserDaoImpl implements UserDAO{
 //            return entityManager
 //                    .createNativeQuery("SELECT * FROM Users", User.class)
 //                    .getResultList();
+    }
+
+    @Override
+    public User login(String userID, String userPass){
+
+        try{
+            return entityManager
+                    .createQuery("SELECT u FROM User u where u.userID =:userID AND u.userPass =:userPass",User.class)
+                    .setParameter("userID",userID)
+                    .setParameter("userPass", userPass)
+                    .getSingleResult();
+
+        }catch(NoResultException e){
+            return null;
+        }
+
+//        if (encoder.matches(userPass, user.getUserPass())){
+//            return "LOGIN SUCCESS";
+//        }else{
+//            return "LOGIN FAILED";
+//        }
+//        System.out.println("RESULT SIZE = " + user.size());
+//        if (user.getUserPass().equalsIgnoreCase(userPass)){
+//            return "LOGIN SUCCESS";
+//        }else{
+//            return "LOGIN FAILED";
+//        }
     }
 
     @Override
