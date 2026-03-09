@@ -26,8 +26,6 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private JWTService jwtService;
 
-
-
     public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
 //        this.pwConfig = pwConfig;
@@ -54,20 +52,20 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public User findUser(String id){
-        return userDAO.findUser(id);
+    public User findUser(String userID){
+        return userDAO.findUser(userID);
     }
 
     @Override
     @Transactional
-    public User updatedUsername(String id, Map<String, Object> updates){
-        return userDAO.updatedUsername(id, updates);
+    public User updatedUsername(String userID, Map<String, Object> updates){
+        return userDAO.updatedUsername(userID, updates);
     }
 
     @Override
     @Transactional
-    public User deleteUser(String id){
-        return userDAO.deleteUser(id);
+    public User deleteUser(String userID){
+        return userDAO.deleteUser(userID);
     }
 
     @Override
@@ -84,7 +82,6 @@ public class UserServiceImpl implements UserService{
 
         return jwtService.generateToken(userID);
 
-
-
     }
+
 }

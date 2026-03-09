@@ -20,11 +20,12 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
+
     @Column(name = "id")
     private String id;
 
-    @Column(name = "userid", unique = true, nullable = false)
+    @Id
+    @Column(name = "userid")
     private String userID;
     @Column(name = "username")
     private String userName;
@@ -48,6 +49,8 @@ public class User implements Serializable {
     private String isLogin;
     @Column(name = "roleid")
     private String roleID;
+    @Column(name = "ldapFlag")
+    private String ldapFlag;
 //    @Id
 //    private String id ;
 //

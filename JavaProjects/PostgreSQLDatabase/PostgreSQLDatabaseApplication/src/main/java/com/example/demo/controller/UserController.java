@@ -48,22 +48,22 @@ public class UserController {
     }
     //
     //FIND USER BY ID
-    @GetMapping("/{id}")
-    public User findUser(@PathVariable String id){
-        return userService.findUser(id);
+    @GetMapping("/{userID}")
+    public User findUser(@PathVariable String userID){
+        return userService.findUser(userID);
     }
     //
 //
-    @PatchMapping("/updateUser/{id}")
-    public ResponseEntity<User> updateUsername(@PathVariable String id, @RequestBody Map<String, Object> updates){
-        User updatedUser = userService.updatedUsername(id, updates);
+    @PatchMapping("/updateUser/{userID}")
+    public ResponseEntity<User> updateUsername(@PathVariable String userID, @RequestBody Map<String, Object> updates){
+        User updatedUser = userService.updatedUsername(userID, updates);
         return ResponseEntity.ok(updatedUser);
     }
     //
     //SISA DELETE
-    @DeleteMapping("/deleteUser/{id}")
-    public User deleteUser(@PathVariable String id){
-        return userService.deleteUser(id);
+    @DeleteMapping("/deleteUser/{userID}")
+    public User deleteUser(@PathVariable String userID){
+        return userService.deleteUser(userID);
     }
 
 

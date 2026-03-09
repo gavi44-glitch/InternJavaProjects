@@ -57,9 +57,9 @@ public class UserDaoImpl implements UserDAO{
     }
 
     @Override
-    public User findUser(String id){
+    public User findUser(String userID){
 
-        return entityManager.find(User.class, id);
+        return entityManager.find(User.class, userID);
 
 
         /*
@@ -71,11 +71,11 @@ public class UserDaoImpl implements UserDAO{
     }
 
     @Override
-    public User updatedUsername(String id, Map<String, Object> updates){
+    public User updatedUsername(String userID, Map<String, Object> updates){
 
 
 
-        User updatedData = entityManager.find(User.class,id);
+        User updatedData = entityManager.find(User.class,userID);
 
 
         if(updatedData == null){
@@ -89,8 +89,8 @@ public class UserDaoImpl implements UserDAO{
         return updatedData;
            /*
           INI cara mengambil entity berdasarkan PK di JPA
-         jadi syntax aslinya itu  User user = entityManager.find(User.class, id);
-         artinya dia mengambil entity user berdasarkan primary key = id
+         jadi syntax aslinya itu  User user = entityManager.find(User.class, userID);
+         artinya dia mengambil entity user berdasarkan primary key = userID
 
          jadi kalo sudah ada datanya di persistence context, dia return object yang sama
          tapi kalo belum ada, maka hibernate akan generate SQL untuk dikirim ke db
@@ -100,8 +100,8 @@ public class UserDaoImpl implements UserDAO{
     }
 
     @Override
-    public User deleteUser(String id){
-        User user = entityManager.find(User.class, id);
+    public User deleteUser(String userID){
+        User user = entityManager.find(User.class, userID);
 
         if(user!=null){
             entityManager.remove(user);
