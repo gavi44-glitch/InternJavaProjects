@@ -30,14 +30,23 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter{
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-
         String authHeader = request.getHeader("Authorization");
         String token = null;
 
         String userID = null;
-
+        String path = request.getServletPath();
 
         try {
+
+            // untuk skip swagger endpoint
+            if(path.startsWith("/swagger-ui") ||
+                path.startsWith("/v3/api-docs") ||
+                    path.startsWith("/swagger-resources")
+            )
+            {
+                filterChain.doFilter(request, response);
+                return;
+            }
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
 
                 token = authHeader.substring(7);
@@ -74,5 +83,4 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter{
         filterChain.doFilter(request, response);
 
     }
-
 }
