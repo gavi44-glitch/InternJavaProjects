@@ -66,6 +66,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter{
 
                     UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(
+                                    // bisa disebut sebagai principal, dan diakses dgn auth.getPrincipal
                                     foundUserID,
                                     null,
                                     Collections.emptyList()

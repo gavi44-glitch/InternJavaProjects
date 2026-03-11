@@ -17,17 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 @EnableWebSecurity
 public class SecurityConfig {
 
-
     private final JWTAuthenticationFilter jwtAuthenticationFilter;
-
 
     public SecurityConfig(JWTAuthenticationFilter jwtAuthenticationFilter){
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
     @Bean
-
-
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         http
@@ -46,9 +42,7 @@ public class SecurityConfig {
                     .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception
-//                .authenticationEntryPoint((request, response, ex) ->
-//                        res.sendError(HttpServletResponse.SC_UNAUTHORIZED)
-                                .authenticationEntryPoint((request, response, ex) -> {
+                               .authenticationEntryPoint((request, response, ex) -> {
                                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
                                 })
 
@@ -58,7 +52,7 @@ public class SecurityConfig {
                                 })
                 )
 
-
+                // jadi menjalankan jwt filter sebelum usernamePassword filter itu,
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         
         return http.build();

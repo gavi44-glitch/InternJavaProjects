@@ -14,6 +14,7 @@ import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 //import java.util.HashMap;
 //import java.util.Random;
 //import java.util.UUID;
@@ -26,15 +27,15 @@ public class BaseHelper {
     @SuppressWarnings("unused")
     private static final byte[] keyValue = new byte[] { '4', 'L', 'P', '4', 'B', '1', 't', 'p', '3', 'R', 'm', '4', 'T','a' };
 
-//    public static Timestamp getCurrentTimestamp(){
-//        Date dt = new Date();
-//        return new Timestamp(dt.getTime());
-//    }
+    public static Timestamp getCurrentTimestamp(){
+        Date dt = new Date();
+        return new Timestamp(dt.getTime());
+    }
 //
-//    public static String getRandomNumber() {
-//        Random random = new Random();
-//        return String.valueOf(random.nextInt(9999));
-//    }
+    public static String getRandomNumber() {
+        Random random = new Random();
+        return String.valueOf(random.nextInt(9999));
+    }
 //
 //    public static String generateUUID() {
 //        return UUID.randomUUID().toString();
