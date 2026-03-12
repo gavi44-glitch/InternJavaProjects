@@ -30,8 +30,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers(
-                            new AntPathRequestMatcher("/users/login"),
-                            new AntPathRequestMatcher("/users/create"),
+                            new AntPathRequestMatcher("/users/loginUser"),
+                            new AntPathRequestMatcher("/users/createUser"),
                             new AntPathRequestMatcher("/swagger-ui/**"),
                             new AntPathRequestMatcher("/swagger-ui.html"),
                             new AntPathRequestMatcher("/v3/api-docs"),

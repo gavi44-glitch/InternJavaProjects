@@ -73,8 +73,6 @@ public class UserDaoImpl implements UserDAO{
     @Override
     public User updatedUsername(String userID, Map<String, Object> updates){
 
-
-
         User updatedData = entityManager.find(User.class,userID);
 
 

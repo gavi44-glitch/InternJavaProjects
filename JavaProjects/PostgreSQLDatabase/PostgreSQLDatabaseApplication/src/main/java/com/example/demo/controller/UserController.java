@@ -31,7 +31,7 @@ public class UserController {
     }
 
     //CREATE USER
-    @PostMapping("/create")
+    @PostMapping("/createUser")
     @Operation(summary = "Create user")
     public User create(@RequestBody User user){
         System.out.println(user);
@@ -39,7 +39,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("/loginUser")
     @Operation(summary = "Login user")
     public String login(@RequestBody Login login){
 
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     //  READ ALL
-    @GetMapping("/read")
+    @GetMapping("/readUser")
     @Operation(summary = "Read all users", security = @SecurityRequirement(name = "bearerAuth"))
     public List<User> readAll(){
         return userService.readAll();
