@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.util.Map;
 
 @Repository
 public class BOTDBDAOImpl implements BOTDBDAO{
@@ -45,5 +46,14 @@ public class BOTDBDAOImpl implements BOTDBDAO{
         }
         return botdb;
     }
+
+    //GAUSAH MERGE LAGI, KARENA UPDATE ENTITY ADA DALAM 1 TRANSAKSI YANG SAMA DENGAN detailDataSource
+    // jadi flownya find botdb dulu -> baru update gitu
+    // kalo udah di find, udah ada dalam persistence context, jadi kalo di .merge lagi -> redundant.
+
+//    @Override
+//    public BOTDB updateDataSource(String dataSourceCode, Map<String,Object> updates){
+//        return (BOTDB) entityManager.merge(updates);
+//    }
 
 }

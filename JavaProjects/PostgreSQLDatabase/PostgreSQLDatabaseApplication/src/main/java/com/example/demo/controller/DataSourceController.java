@@ -47,11 +47,11 @@ public class DataSourceController {
         return botdbService.deleteDataSource(dataSourceBean.getDataSourceCode());
     }
 
-//    @PatchMapping("/updateDataSource")
-//    @Operation(summary = "Update DataSource", security = @SecurityRequirement(name = "bearerAuth"))
-//    public ResponseEntity<BOTDB> updateDataSource(@RequestBody Map<String, Object> updates){
-//        BOTDB updateDataSource = botdbService.updateDataSource(updates);
-//        return ResponseEntity.ok(updateDataSource);
-//    }
+    @PatchMapping("/updateDataSource/{dataSourceCode}")
+    @Operation(summary = "Update DataSource by dataSourceCode", security = @SecurityRequirement(name = "bearerAuth"))
+    public ResponseEntity<BOTDB> updateDataSource(@PathVariable String dataSourceCode, @RequestBody Map<String, Object> updates){
+        BOTDB updateDataSource = botdbService.updateDataSource(dataSourceCode, updates);
+        return ResponseEntity.ok(updateDataSource);
+    }
 
 }

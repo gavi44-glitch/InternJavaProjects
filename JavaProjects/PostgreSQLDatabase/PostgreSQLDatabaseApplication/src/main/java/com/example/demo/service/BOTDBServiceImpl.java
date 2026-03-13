@@ -8,6 +8,10 @@ import com.example.demo.utils.StaticParameter;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Field;
+import java.util.Map;
+//import java.util.Set;
+import java.util.HashSet;
 import java.util.UUID;
 
 @Service
@@ -71,7 +75,36 @@ public class BOTDBServiceImpl implements BOTDBService{
         return botdbdao.deleteDataSource(dataSourceCode);
     }
 
-//    @Override
-//    @Transactional
-//    public
+    @Override
+    @Transactional
+    public BOTDB updateDataSource(String dataSourceCode, Map<String,Object> updates){
+
+        BOTDB botdb = botdbdao.detailDataSource(dataSourceCode);
+
+        HashSet<String> allowedUpdates = new HashSet<>();
+        allowedUpdates.add("dataSourceName");
+        allowedUpdates.add("description");
+
+        for(Map.Entry<String,Object> entry : updates.entrySet()){
+            if(!allowedUpdates.contains(entry.getKey())){
+                continue;
+            }
+
+            try {
+                Field field = BOTDB.class.getDeclaredField(entry.getKey());
+                field.setAccessible(true);
+                field.set(botdb, entry.getValue());
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return botdb;
+
+        //GAUSAH MERGE LAGI, KARENA UPDATE ENTITY ADA DALAM 1 TRANSAKSI YANG SAMA DENGAN detailDataSource
+        // jadi flownya find botdb dulu -> baru update gitu
+        // kalo udah di find, udah ada dalam persistence context, jadi kalo di .merge lagi -> redundant.
+
+//        return botdbdao.updateDataSource(dataSourceCode,updates);
+    }
 }
