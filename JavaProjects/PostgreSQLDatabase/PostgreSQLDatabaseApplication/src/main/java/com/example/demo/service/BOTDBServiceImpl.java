@@ -5,7 +5,9 @@ import com.example.demo.model.BOTDB;
 import com.example.demo.model.PendingTask;
 import com.example.demo.utils.BaseHelper;
 import com.example.demo.utils.StaticParameter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.Field;
@@ -63,7 +65,15 @@ public class BOTDBServiceImpl implements BOTDBService{
     @Override
     public BOTDB detailDataSource(String dataSourceCode) {
 
+
+        PendingTask pendingTask = pendingTaskService.findByReferenceNo(dataSourceCode);
+
+        if(pendingTask == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "DataSource tidak ditemukan ");
+        }
+
         BOTDB botdb = botdbdao.detailDataSource(dataSourceCode);
+
 
         return botdb;
     }
@@ -71,13 +81,25 @@ public class BOTDBServiceImpl implements BOTDBService{
     @Override
     @Transactional
     public BOTDB deleteDataSource(String dataSourceCode){
+        PendingTask pendingTask = pendingTaskService.findByReferenceNo(dataSourceCode);
 
+        if(pendingTask == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "DataSource tidak ditemukan ");
+        }
+        //HARD DELETE si PendingTask
+        pendingTaskService.deleteByReferenceNo(dataSourceCode);
         return botdbdao.deleteDataSource(dataSourceCode);
     }
 
     @Override
     @Transactional
     public BOTDB updateDataSource(String dataSourceCode, Map<String,Object> updates){
+
+        PendingTask pendingTask = pendingTaskService.findByReferenceNo(dataSourceCode);
+
+        if(pendingTask == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "DataSource tidak ditemukan ");
+        }
 
         BOTDB botdb = botdbdao.detailDataSource(dataSourceCode);
 
