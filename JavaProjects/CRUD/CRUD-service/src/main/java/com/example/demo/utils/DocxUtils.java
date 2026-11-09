@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.util.logging.Logger;
 
-@Component
+
 public class DocxUtils {
 
     public static void setPageSizeAndMargins(XWPFDocument doc,

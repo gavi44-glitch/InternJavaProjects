@@ -24,8 +24,9 @@ import java.math.BigInteger;
 @Component
 public class HeaderFooterHandlerWord {
 
-    @Autowired
-    private DocxUtils docxUtils;
+//    @Autowired
+//    private DocxUtils docxUtils;
+    private DocxUtils docxUtils = new DocxUtils();
 
     public void attachHeaderTable(XWPFHeader header) {
 

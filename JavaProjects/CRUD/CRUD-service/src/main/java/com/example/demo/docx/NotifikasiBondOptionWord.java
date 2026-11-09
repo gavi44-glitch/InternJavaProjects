@@ -1,4 +1,5 @@
 package com.example.demo.docx;
+import com.example.demo.pdf.HeaderFooterAll;
 import com.example.demo.pdf.HeaderFooterHandler;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.layout.borders.Border;
@@ -41,11 +42,14 @@ public class NotifikasiBondOptionWord {
     @Autowired
     private FontUtils fontUtils;
 
-    @Autowired
-    private DocxUtils docxUtils;
+//    @Autowired
+//    private DocxUtils docxUtils;
+    private DocxUtils docxUtils = new DocxUtils();
 
-    @Autowired
-    private HeaderFooterHandlerWord headerFooterHandlerWord;
+//    @Autowired
+//    private HeaderFooterHandlerWord headerFooterHandlerWord;
+
+    private HeaderFooterAll headerFooterAll = new HeaderFooterAll();
 
     @Value("${app.pdf.directory}")
     private String dir;
@@ -99,10 +103,10 @@ public class NotifikasiBondOptionWord {
             // memanggil class yang define header dan footer
 
             XWPFHeader header = doc.createHeader(HeaderFooterType.DEFAULT);
-            headerFooterHandlerWord.attachHeaderTable(header);
+            headerFooterAll.attachHeaderTable(header);
 
             XWPFFooter footer = doc.createFooter(HeaderFooterType.DEFAULT);
-            headerFooterHandlerWord.attachFooterTable(footer);
+            headerFooterAll.attachFooterTable(footer);
 
             XWPFParagraph pPerihal = doc.createParagraph();
             pPerihal.setAlignment(ParagraphAlignment.LEFT);

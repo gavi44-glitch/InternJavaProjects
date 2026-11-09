@@ -86,8 +86,10 @@ public class TCFXOption {
             PdfDocument pdfDoc = new PdfDocument(writer);
 
             // memanggil class yang define header dan footer
+//            pdfDoc.addEventHandler(PdfDocumentEvent.END_PAGE,
+//                    new HeaderFooterHandler(createHeaderTable(), createFooterPage()));
             pdfDoc.addEventHandler(PdfDocumentEvent.END_PAGE,
-                    new HeaderFooterHandler(createHeaderTable(), createFooterPage()));
+                    new HeaderFooterAll(createHeaderTable(), createFooterPage()));
 
             Document document = new Document(pdfDoc, PageSize.A4, false);
             document.setMargins(fontUtils.marginsTop(), fontUtils.marginRight(), fontUtils.marginsBottom(), fontUtils.marginLeft());
